@@ -79,6 +79,8 @@ BST operations
     3. traverse(TreeNode) -> List[int] : Inorder traverse, return an ordered sequence.
     4. show(TreeNode) -> None : Show the tree structure.
     5. search(TreeNode, int) -> TreeNode : Search for an element in the tree, return the node if exists, and None if not.
+    6. min_(TreeNode, int) -> int : Return the mininum element in tree.
+    7. max_(TreeNode, int) -> int : Return the maximum element in tree.
 '''
 def insert(root: TreeNode, val) -> TreeNode:
     if root == None:
@@ -157,6 +159,24 @@ def search(root: TreeNode, val) -> TreeNode:
     return None
 
 
+def min_(root: TreeNode):
+    if root == None:
+        return 0xffffffff
+    cur = root
+    while cur.left:
+        cur = cur.left
+    return cur.val
+
+
+def max_(root: TreeNode):
+    if root == None:
+        return 0x3fffffff
+    cur = root
+    while cur.right:
+        cur = cur.right
+    return cur.val
+
+
 '''
 Demo
 '''
@@ -176,5 +196,7 @@ if __name__ == '__main__':
             print(traverse(root))
         elif op == 's': # show
             show(root)
+        elif op == 'm': # max and min
+            print(max_(root), min_(root))
         else:
             print('Unexpected oparator: %s.' % op)
